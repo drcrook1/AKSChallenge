@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  tls:
+  - hosts:
+    - frontend.601a4100d9f64def847e.eastus.aksapp.io # replace cluster specific dns zone with your HTTP Routing DNS Zone name
+    secretName: frontend-tls-secret
+  rules:
+  - host: frontend.601a4100d9f64def847e.eastus.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: frontend
+          servicePort: 80
+        path: /
