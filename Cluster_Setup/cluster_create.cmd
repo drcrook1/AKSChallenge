@@ -3,6 +3,7 @@ az aks create --resource-group dacrook-akschallenge --name dacrook-akschallenge 
 az aks get-credentials --resource-group dacrook-akschallenge --name dacrook-akschallenge
 az aks enable-addons --resource-group dacrook-akschallenge --name dacrook-akschallenge --addons http_application_routing
 az aks enable-addons --resource-group dacrook-akschallenge --name dacrook-akschallenge --addons monitoring
+kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
 ::Configure Kubernetes
 kubectl apply -f helm-rbac.yaml
